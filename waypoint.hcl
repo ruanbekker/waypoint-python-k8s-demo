@@ -7,14 +7,13 @@ app "python-example" {
     }
 
     build {
-        use "docker" {}    
-    }
-    
-    registry {
-        use "docker" {
-            image = "ruanbekker/wp-python-example"
-            tag = gitrefpretty()
-            local = false
+        use "docker" {}     
+        registry {
+            use "docker" {
+                image = "ruanbekker/wp-python-example"
+                tag = gitrefpretty()
+                local = false
+            }
         }
     }
 

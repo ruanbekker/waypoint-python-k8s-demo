@@ -1,13 +1,15 @@
 # https://fastapi.tiangolo.com
-from typing import Optional
-from fastapi import FastAPI
+from flask import Flask
 
-app = FastAPI()
+app = Flask(__name__)
 
-@app.get("/")
+@app.route("/")
 def read_root():
     return {"message": "hello, world!"}
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
-    return {"item_id": item_id, "q": q}
+@app.route("/health")
+def read_health():
+    return {"message": "ok"}
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)

@@ -1,7 +1,7 @@
 FROM python:3.7-alpine
 
-RUN pip install fastapi uvicorn
-ADD src/main.py /app/main.py
-WORKDIR /app
+RUN pip install flask
+ADD src/main.py /code/main.py
+WORKDIR /code
 
-CMD ["uvicorn", "--host", "0.0.0.0", "--port", "5000", "main:app"]
+CMD ["python", "/code/main.py"]

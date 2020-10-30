@@ -1,16 +1,11 @@
 project = "waypoint-python-k8s-demo"
 
-app "python-example" {
-    labels = {
-        "service" = "python-example",
-        "env" = "dev"
-    }
-
+app "flask-example" {
     build {
         use "docker" {}     
         registry {
             use "docker" {
-                image = "ruanbekker/wp-python-example"
+                image = "ruanbekker/waypoint-flask-example"
                 tag = gitrefpretty()
                 local = false
             }
@@ -19,11 +14,13 @@ app "python-example" {
 
     deploy {
         use "kubernetes" {
-            probe_path = "/"
+            probe_path = "/health"
+            service_port = 5000
+            replicas = 1
         }
     }
     
-    release{
+    release {
         use "kubernetes" {}
     }
     

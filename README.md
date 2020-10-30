@@ -136,3 +136,18 @@ View the image tag:
 $ kubectl get deployment/flask-example-01enxpfc0h42t53hvxbxjygb5p -o=jsonpath='{$.spec.template.spec.containers[:1].image}'; echo
 ruanbekker/waypoint-flask-example:dca858f31c1e7bc6b31d8f9eb768e67289d15e8c_CHANGES_1604093131
 ```
+
+Clean up:
+
+```
+$ waypoint destroy
+
+» Destroying releases...
+ + Kubernetes client connected to https://51.x.x.x:6443 with namespace default
+ + Deleting service...
+
+» Destroying deployments...
+ + Kubernetes client connected to https://51.x.x.x:6443 with namespace default
+ + Deleting deployment...
+Destroy successful!
+```

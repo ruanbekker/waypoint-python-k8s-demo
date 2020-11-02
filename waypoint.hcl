@@ -15,9 +15,10 @@ app "flask-example" {
     deploy {
         use "aws-ecs" {
             region = "eu-west-1"
-            cluster = "dev-ecs"
-            ec2_cluster = true
-            memory = "256"
+            cluster = "eph-dev-ecs"
+            ec2_cluster = false
+            memory = "512"
+            service_port = 5000
         }
     }
     

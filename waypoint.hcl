@@ -2,26 +2,23 @@ project = "waypoint-python-k8s-demo"
 
 app "flask-example" {
     build {
-        use "docker" {}     
+        use "docker" {}
         registry {
-            use "docker" {
-                image = "ruanbekker/waypoint-flask-example"
+            use "aws-ecr" {
+                region = "eu-west-1"
+                repository = "ephemeral-waypoint"
                 tag = gitrefpretty()
-                local = false
             }
         }
     }
-
-    deploy {
-        use "kubernetes" {
-            probe_path = "/health"
-            service_port = 5000
-            replicas = 1
-        }
-    }
     
-    release {
-        use "kubernetes" {}
+    deploy {
+        use "aws-ecs" {
+            region = "eu-west-1"
+            cluster = "dev-ecs"
+            ec2_cluster = true
+            memory = "256"
+        }
     }
     
     url {

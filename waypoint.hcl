@@ -19,6 +19,7 @@ app "flask-example" {
             ec2_cluster = false
             memory = "512"
             service_port = 5000
+            subnets = ["subnet-REPLACEME", "subnet-REPLACEME"]
         }
     }
     

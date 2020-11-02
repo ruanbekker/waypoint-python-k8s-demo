@@ -1,0 +1,34 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "WaypointECR",
+            "Effect": "Allow",
+            "Action": [
+                "ecr:DescribeRepositories",
+                "ecr:InitiateLayerUpload",
+                "ecr:UploadLayerPart",
+                "ecr:CompleteLayerUpload",
+                "ecr:PutImage"
+            ],
+            "Resource": "arn:aws:ecr:eu-west-1:xxxxxxxxxxxx:repository/ephemeral-waypoint"
+        },
+        {
+            "Sid": "WaypointIAM",
+            "Effect": "Allow",
+            "Action": [
+                "iam:CreateRole",
+                "iam:AttachRolePolicy"
+            ],
+            "Resource": "arn:aws:iam::xxxxxxxxxxxx:role/ecr-flask-example"
+        },
+        {
+            "Sid": "WaypointASG",
+            "Effect": "Allow",
+            "Action": [
+                "elasticloadbalancing:ModifyListener"
+            ],
+            "Resource": "arn:aws:elasticloadbalancing:eu-west-1:xxxxxxxxxxxx:listener/app/waypoint-ecs-flask-example/*/*"
+        }
+    ]
+}
